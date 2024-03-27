@@ -198,6 +198,10 @@ case "${host_cpu}" in
   mep)
 	machine_dir=mep
 	;;
+  riscv*)
+	machine_dir=riscv
+	newlib_cflags="${newlib_cflags} -DREENTRANT_SYSCALLS_PROVIDED"
+	;;
   mips*)
 	machine_dir=mips
 	;;

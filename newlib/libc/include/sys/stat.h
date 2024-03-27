@@ -31,8 +31,23 @@ struct	stat
   uid_t		st_uid;
   gid_t		st_gid;
   dev_t		st_rdev;
+#if defined(__riscv__)
+  dev_t		__pad1;
+#endif
   off_t		st_size;
-#if defined(__rtems__)
+#if defined(__riscv__)
+  unsigned int	st_blksize;
+  unsigned int	__pad2;
+  unsigned long long	st_blocks;
+  time_t	st_atime;
+  time_t	__pad3;
+  time_t	st_mtime;
+  time_t	__pad4;
+  time_t	st_ctime;
+  time_t	__pad5;
+  unsigned int	__unused4;
+  unsigned int	__unused5;
+#elif defined(__rtems__)
   struct timespec st_atim;
   struct timespec st_mtim;
   struct timespec st_ctim;
